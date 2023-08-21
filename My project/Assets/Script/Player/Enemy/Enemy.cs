@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
-        targetPosition = Player.instance.GetPlayerPosition();
+        targetPosition = PlayerInfo.instance.GetPlayerPosition();
         enemyTransform.position = Vector3.MoveTowards(enemyTransform.position, targetPosition, velocity * Time.deltaTime);
     }
 }
