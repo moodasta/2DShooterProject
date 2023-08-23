@@ -73,6 +73,16 @@ public class PlayerInfo : MonoBehaviour
         return isHurt;
     }
 
+    public void SetPlayerHurt(bool hurt)
+    {
+        isHurt= hurt;
+    }
+
+    public SpriteRenderer GetSpriteRenderer()
+    {
+        return spriteRenderer;
+    }
+
 }
 
 
