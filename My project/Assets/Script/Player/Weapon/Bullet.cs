@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float bulletVelocity;
+    [SerializeField] private float bulletLifeTime;
 
     void Update()
     {

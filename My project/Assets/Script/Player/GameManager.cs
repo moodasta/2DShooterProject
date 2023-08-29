@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private int gameScore = 0;
+    private int playerLifes;
 
     private void Awake()
     {
@@ -24,5 +26,22 @@ public class GameManager : MonoBehaviour
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         mousePosition.z = 0;
         return mousePosition;
+    }
+
+    public int GetGameScore()
+    {
+        return gameScore;
+    }
+
+    public void SetGameScore(int score)
+    {
+        gameScore += score;
+        UIManager.Instance.SetScoreText(gameScore);
+    }
+
+    public void SetPlayerLife(int Life)
+    {
+        playerLifes = Life;
+        UIManager.Instance.SetLifesText(playerLifes);
     }
 }

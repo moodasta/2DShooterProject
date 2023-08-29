@@ -29,16 +29,17 @@ public class PlayerMove : MonoBehaviour
         PlayerInfo.instance.isMoving = moveX !=0 || movey !=0;
         FlipSprite(moveX);
             }
+
     private void FlipSprite(float moveX)
     {
         if(moveX < 0)
         {
-            spriteRenderer.flipX = true;
+            PlayerInfo.instance.GetSpriteRenderer().flipX = true;
 
         }
         else if(moveX > 0) 
         {
-            spriteRenderer.flipX = false;
+            PlayerInfo.instance.GetSpriteRenderer().flipX = false;
         }
         
     }
