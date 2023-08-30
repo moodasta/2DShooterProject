@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
     private int gameScore = 0;
     private int playerLifes;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {
@@ -36,12 +36,19 @@ public class GameManager : MonoBehaviour
     public void SetGameScore(int score)
     {
         gameScore += score;
-        UIManager.Instance.SetScoreText(gameScore);
+        PlayerInfo.instance.SetCurrentXP(score);
+        UIManager.instance.SetScoreText(gameScore);
     }
 
     public void SetPlayerLife(int Life)
     {
         playerLifes = Life;
-        UIManager.Instance.SetLifesText(playerLifes);
+        UIManager.instance.SetLifesText(playerLifes);
+    }
+
+    public void SetNewXPInfo (int currentLevel, int currentXP, int toLevelUpXP)
+    {
+        UIManager.instance.SetXPInfoText(currentXP, toLevelUpXP);
+        UIManager.instance.SetPlayerLevelText(currentLevel);
     }
 }

@@ -8,15 +8,17 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI lifesText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI xpInfoText;
+    [SerializeField] private TextMeshProUGUI currentLevelXPText;
 
-    public static UIManager Instance;
+    public static UIManager instance;
 
     private void Awake()
     {
         #region Singleton
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {
@@ -43,8 +45,19 @@ public class UIManager : MonoBehaviour
     {
         lifesText.text = "Lifes: " + updatedLife; 
     }
-         
+
+    public void SetXPInfoText(int currentXP, int toLevelUpXP)
+
+    {
+        xpInfoText.text = currentXP + " / " + toLevelUpXP;
     }
+
+    public void SetPlayerLevelText(int newLevel)
+    {
+        currentLevelXPText.text = newLevel.ToString();
+    }
+
+}
 
 
     

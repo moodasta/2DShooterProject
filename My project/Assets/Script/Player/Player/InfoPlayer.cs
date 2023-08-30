@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 
 //Responsible for taking care of general information that the player has
@@ -13,9 +15,15 @@ public class PlayerInfo : MonoBehaviour
     
     [SerializeField] private int lifes = 3;
     [SerializeField] private float playerVelocity = 10;
+
     
     private bool isHurt;
     public bool isMoving;
+
+    private int playerLevel;
+    private int currentPlayerXp;
+    private int toLevelUpXp = 10;
+    
 
 
     // Start is called before the first frame update
@@ -35,9 +43,13 @@ public class PlayerInfo : MonoBehaviour
 
         playerTransform = GetComponent<Transform>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        GameManager.Instance.SetPlayerLife(lifes);
     }
 
+    private void Start()
+    {
+        GameManager.instance.SetPlayerLife(lifes);
+        
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -51,6 +63,7 @@ public class PlayerInfo : MonoBehaviour
     {
         isHurt = true;
         lifes--;
+        GameManager.instance.SetPlayerLife(lifes);
         print(lifes);
         if (lifes <= 0)
         {
@@ -87,6 +100,32 @@ public class PlayerInfo : MonoBehaviour
     {
         return spriteRenderer;
     }
+
+    public int GetPlayerLevel()
+    {
+        return playerLevel;
+    }
+
+    public void SetCurrentXP(int xpToAdd)
+    {
+        currentPlayerXp += xpToAdd;
+        CheckLevelUp();
+    }
+
+    private void CheckLevelUp()
+    {
+        if (currentPlayerXp >= toLevelUpXp)
+        {
+            playerLevel++;
+            currentPlayerXp -= toLevelUpXp;
+            toLevelUpXp += 5;
+        }
+
+        GameManager.instance.SetNewXPInfo(playerLevel, currentPlayerXp, toLevelUpXp);
+    }
+
+
+
 
 }
 
