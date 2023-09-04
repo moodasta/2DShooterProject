@@ -23,8 +23,8 @@ public class PlayerMove : MonoBehaviour
     private void MoveHandler()
 
     {
-        float moveX = Input.GetAxisRaw("Horizontal") * velocity * Time.deltaTime;
-        float movey = Input.GetAxisRaw("Vertical") * velocity * Time.deltaTime;
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float movey = Input.GetAxisRaw("Vertical");
         transform.Translate(new Vector2(moveX,movey).normalized * velocity * Time.deltaTime);
         PlayerInfo.instance.isMoving = moveX !=0 || movey !=0;
         FlipSprite(moveX);

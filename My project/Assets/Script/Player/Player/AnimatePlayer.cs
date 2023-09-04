@@ -8,15 +8,12 @@ public class AnimatePlayer : MonoBehaviour
 {
     private Animator animator;
 
-    private void Awake()
+    private void Start()
     {
         animator = GetComponent<Animator>();
-
-
     }
 
-
-    void Update()
+      void Update()
     {
         AnimationHandler();
     }

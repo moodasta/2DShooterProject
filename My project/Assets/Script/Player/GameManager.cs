@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
     private int gameScore = 0;
     private int playerLifes;
 
@@ -28,22 +29,15 @@ public class GameManager : MonoBehaviour
         return mousePosition;
     }
 
-    public int GetGameScore()
+    public int SetGameScore(int score)
     {
         return gameScore;
     }
 
-    public void SetGameScore(int score)
+    public void SetPlayerLifes(int life)
     {
-        gameScore += score;
-        PlayerInfo.instance.SetCurrentXP(score);
-        UIManager.instance.SetScoreText(gameScore);
-    }
-
-    public void SetPlayerLife(int Life)
-    {
-        playerLifes = Life;
-        UIManager.instance.SetLifesText(playerLifes);
+        playerLifes = life;
+        UIManager.instance.SetLifesText (playerLifes);
     }
 
     public void SetNewXPInfo (int currentLevel, int currentXP, int toLevelUpXP)

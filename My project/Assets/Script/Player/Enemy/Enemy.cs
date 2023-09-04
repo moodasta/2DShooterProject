@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float velocity;
+    [SerializeField] private float velocity = 5;
     private int lives;
-    private Vector3 targetPosition;
+    private Vector2 targetPosition;
     private Transform enemyTransform;
 
     private void Awake()
@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        print("hit " + collision.collider.tag);
         if (collision.collider.tag == "Bullet")
         {
             GameManager.instance.SetGameScore(1);

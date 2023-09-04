@@ -47,7 +47,7 @@ public class PlayerInfo : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.SetPlayerLife(lifes);
+        GameManager.instance.SetPlayerLifes(lifes);
         
     }
 
@@ -55,20 +55,29 @@ public class PlayerInfo : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy")
         {
-        LifeHandler();
+        LifeHandler(-1);
                     }
     }
 
-    private void LifeHandler()
+    private void LifeHandler(int value)
     {
+        if (value > 0)
+        {
+            lifes += value;
+        }
+        else
+        {
         isHurt = true;
         lifes--;
-        GameManager.instance.SetPlayerLife(lifes);
-        print(lifes);
         if (lifes <= 0)
-        {
+            {
             Destroy(this.gameObject);
+
+            }
+
         }
+                
+        GameManager.instance.SetPlayerLifes(lifes);
     }
 
     public Vector2 GetPlayerPosition()

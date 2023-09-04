@@ -5,16 +5,16 @@ using UnityEngine;
 public class PowerupManager : MonoBehaviour
 {
 
-    public static PowerupManager Instance;
+    public static PowerupManager instance;
 
 
 
 
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
     }
 
